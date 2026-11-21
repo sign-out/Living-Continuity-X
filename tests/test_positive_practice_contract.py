@@ -15,7 +15,7 @@ class PositivePracticeContract(unittest.TestCase):
 
     def test_four_native_player_scoped_probes_retained(self):
         for category in ("social", "knowledge", "consequence", "progression"):
-            key = "sys_lc_mp_attribute_" + category
+            key = ("lcx_mark_" if WORLD.name == "LCX.json" else "sys_lc_mp_attribute_") + category
             self.assertIn(key, self.triggers)
             self.assertEqual(self.triggers[key]["scope"], "player")
             self.assertTrue(any(effect.get("target") == "satisfyingPlayers" for effect in self.triggers[key].get("effects", [])))
